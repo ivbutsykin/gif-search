@@ -1,14 +1,14 @@
 import './App.css';
 import Container from './Container/Container';
 import Search from './Search/Search';
-import GifContainer from './GifContainer/GifContainer';
+import GifsList from './GifsList/GifsList';
 
 function App() {
   return (
     <div className="App">
       <Container>
         <Search />
-        <GifContainer />
+        <GifsList />
       </Container>
     </div>
   );

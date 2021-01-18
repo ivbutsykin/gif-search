@@ -1,5 +1,5 @@
 import React from 'react';
-import './GifContainer.css';
+import './GifsList.css';
 import GifItem from './GifItem/GifItem';
 
 class GifContainer extends React.Component {
@@ -24,8 +24,6 @@ class GifContainer extends React.Component {
     data = data.map(el => ({
       id: el.id,
       url: el.images.downsized.url,
-      height: el.images.downsized.height,
-      width: el.images.downsized.width,
       title: el.title,
     }));
     this.setState({
@@ -35,15 +33,9 @@ class GifContainer extends React.Component {
 
   render() {
     return (
-      <div className="GifContainer">
+      <div className="GifsList">
         {this.state.gifsData.map(obj => (
-          <GifItem
-            src={obj.url}
-            alt={obj.title}
-            key={obj.id}
-            height={obj.height}
-            width={obj.width}
-          />
+          <GifItem src={obj.url} alt={obj.title} key={obj.id} />
         ))}
       </div>
     );
