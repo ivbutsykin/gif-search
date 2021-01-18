@@ -23,7 +23,7 @@ class App extends React.Component {
 
   handleFiltersChange = filters => {
     this.setState({ filters });
-    this.search('search', filters.request);
+    this.search(filters.type, filters.request);
   };
 
   search = async (type, request = '') => {

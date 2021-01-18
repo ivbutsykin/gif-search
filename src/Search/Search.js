@@ -8,6 +8,11 @@ class Search extends React.Component {
   }
 
   handleChange(e) {
+    if (e.target.value) {
+      this.props.filters.type = 'search';
+    } else {
+      this.props.filters.type = 'trending';
+    }
     this.props.filters.request = e.target.value;
   }
 
