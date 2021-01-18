@@ -2,19 +2,14 @@ import './Search.css';
 import React from 'react';
 
 class Search extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(e) {
+  handleChange = e => {
     if (e.target.value) {
       this.props.filters.type = 'search';
     } else {
       this.props.filters.type = 'trending';
     }
     this.props.filters.request = e.target.value;
-  }
+  };
 
   render() {
     return (
