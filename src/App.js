@@ -5,17 +5,13 @@ import GifsList from './GifsList/GifsList';
 import React from 'react';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleFiltersChange = this.handleFiltersChange.bind(this);
-    this.state = {
-      filters: {
-        type: 'trending',
-        request: '',
-      },
-      images: [],
-    };
-  }
+  state = {
+    filters: {
+      type: 'trending',
+      request: '',
+    },
+    images: [],
+  };
 
   componentDidMount() {
     this.search('trending');
