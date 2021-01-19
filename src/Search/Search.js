@@ -39,6 +39,12 @@ class Search extends React.Component {
             InputLabelProps={{
               shrink: true,
             }}
+            error={
+              parseInt(this.state.number) < 1 ||
+              parseInt(this.state.number) > 50 ||
+              this.state.number.includes('-') ||
+              this.state.number === ''
+            }
             onChange={this.handleNumberChange}
           />
         </Grid>
