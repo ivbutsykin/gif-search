@@ -1,5 +1,8 @@
 import './Search.css';
 import React from 'react';
+import Button from '@material-ui/core/Button';
+import SearchIcon from '@material-ui/icons/Search';
+import TextField from '@material-ui/core/TextField';
 
 class Search extends React.Component {
   state = this.props.filters;
@@ -13,19 +16,20 @@ class Search extends React.Component {
   render() {
     return (
       <div className="Search">
-        <input
+        <TextField
+          id="standard-basic"
+          label="Search GIF"
           value={this.props.request}
-          type="text"
-          placeholder="Search GIF"
-          className="SearchBar"
           onChange={this.handleChange}
         />
-        <button
-          className="SearchButton"
+        <Button
+          variant="contained"
+          color="primary"
+          startIcon={<SearchIcon />}
           onClick={() => this.props.onFiltersChange(this.state)}
         >
           Search
-        </button>
+        </Button>
       </div>
     );
   }
