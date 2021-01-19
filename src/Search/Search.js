@@ -16,7 +16,7 @@ class Search extends React.Component {
   render() {
     return (
       <Grid container alignItems="center" spacing={2}>
-        <Grid item xs={10}>
+        <Grid item xs={6} sm={10}>
           <TextField
             label="Search GIF"
             fullWidth
@@ -25,7 +25,7 @@ class Search extends React.Component {
             onChange={this.handleChange}
           />
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={6} sm={2}>
           <Button
             variant="contained"
             color="primary"
