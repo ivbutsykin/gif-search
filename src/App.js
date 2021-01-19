@@ -1,8 +1,7 @@
-import './App.css';
-import Container from './Container/Container';
 import Search from './Search/Search';
 import GifsList from './GifsList/GifsList';
 import React from 'react';
+import Container from '@material-ui/core/Container';
 
 class App extends React.Component {
   state = {
@@ -42,7 +41,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Container>
+        <Container maxWidth="md">
           <Search
             filters={this.state.filters}
             onFiltersChange={this.handleFiltersChange}

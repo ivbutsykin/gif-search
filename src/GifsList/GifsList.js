@@ -1,14 +1,15 @@
-import React from 'react';
-import './GifsList.css';
 import GifItem from './GifItem/GifItem';
+import Grid from '@material-ui/core/Grid';
 
-function GifContainer(props) {
+function GifsList(props) {
   return (
-    <div className="GifsList">
+    <Grid container spacing={2}>
       {props.images.map(obj => (
-        <GifItem src={obj.url} alt={obj.title} key={obj.id} />
+        <Grid item xs={3} key={obj.id}>
+          <GifItem src={obj.url} alt={obj.title} />
+        </Grid>
       ))}
-    </div>
+    </Grid>
   );
 }
-export default GifContainer;
+export default GifsList;

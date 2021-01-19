@@ -1,8 +1,8 @@
-import './Search.css';
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
 
 class Search extends React.Component {
   state = this.props.filters;
@@ -15,22 +15,27 @@ class Search extends React.Component {
 
   render() {
     return (
-      <div className="Search">
-        <TextField
-          id="standard-basic"
-          label="Search GIF"
-          value={this.props.request}
-          onChange={this.handleChange}
-        />
-        <Button
-          variant="contained"
-          color="primary"
-          startIcon={<SearchIcon />}
-          onClick={() => this.props.onFiltersChange(this.state)}
-        >
-          Search
-        </Button>
-      </div>
+      <Grid container alignItems="center" spacing={2}>
+        <Grid item xs={10}>
+          <TextField
+            label="Search GIF"
+            fullWidth
+            margin="normal"
+            value={this.props.request}
+            onChange={this.handleChange}
+          />
+        </Grid>
+        <Grid item xs={2}>
+          <Button
+            variant="contained"
+            color="primary"
+            startIcon={<SearchIcon />}
+            onClick={() => this.props.onFiltersChange(this.state)}
+          >
+            Search
+          </Button>
+        </Grid>
+      </Grid>
     );
   }
 }

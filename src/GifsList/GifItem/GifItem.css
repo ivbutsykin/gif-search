@@ -1,7 +1,5 @@
 .GifItem {
-  flex-basis: 24%;
   height: 250px;
-  margin-bottom: 10px;
 }
 
 .GifItem img {
