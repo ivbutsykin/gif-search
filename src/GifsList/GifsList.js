@@ -5,7 +5,7 @@ function GifsList(props) {
   return (
     <Grid container spacing={2}>
       {props.images.map(obj => (
-        <Grid item xs={6} sm={3} key={obj.id}>
+        <Grid item xs={6} sm={4} md={3} key={obj.id}>
           <GifItem src={obj.url} alt={obj.title} />
         </Grid>
       ))}

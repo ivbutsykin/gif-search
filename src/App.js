@@ -8,6 +8,7 @@ class App extends React.Component {
     filters: {
       type: 'trending',
       request: '',
+      number: '12',
     },
     images: [],
   };
@@ -17,14 +18,17 @@ class App extends React.Component {
   }
 
   handleFiltersChange = filters => {
+    if (parseInt(filters.number) < 1) filters.number = '1';
+    if (parseInt(filters.number) > 50) filters.number = '50';
+    if (filters.number === '') filters.number = '12';
     this.setState({ filters });
-    this.search(filters.type, filters.request);
+    this.search(filters.type, filters.request, filters.number);
   };
 
-  search = async (type, request = '') => {
+  search = async (type, request = '', number = '12') => {
     const APIKEY = 'pjCHX4LrLMKOXW9FusMNZDv9QDB4lAXP';
     const response = await fetch(
-      `https://api.giphy.com/v1/gifs/${type}?api_key=${APIKEY}&limit=12&q=${request}`
+      `https://api.giphy.com/v1/gifs/${type}?api_key=${APIKEY}&limit=${number}&q=${request}`
     );
     const responseJson = await response.json();
     let data = await responseJson.data;
