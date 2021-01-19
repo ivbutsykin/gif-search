@@ -2,19 +2,19 @@ import './Search.css';
 import React from 'react';
 
 class Search extends React.Component {
+  state = this.props.filters;
+
   handleChange = e => {
-    if (e.target.value) {
-      this.props.filters.type = 'search';
-    } else {
-      this.props.filters.type = 'trending';
-    }
-    this.props.filters.request = e.target.value;
+    const { value } = e.target;
+    const type = value ? 'search' : 'trending';
+    this.setState({ type, request: value });
   };
 
   render() {
     return (
       <div className="Search">
         <input
+          value={this.props.request}
           type="text"
           placeholder="Search GIF"
           className="SearchBar"
@@ -22,7 +22,7 @@ class Search extends React.Component {
         />
         <button
           className="SearchButton"
-          onClick={() => this.props.onFiltersChange(this.props.filters)}
+          onClick={() => this.props.onFiltersChange(this.state)}
         >
           Search
         </button>
