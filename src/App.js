@@ -1,7 +1,7 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
 import Search from './Search/Search';
-import GifsList from './GifsList/GifsList';
+import PaginationControlled from './PaginationControlled/PaginationControlled';
 
 class App extends React.Component {
   state = {
@@ -60,7 +60,7 @@ class App extends React.Component {
             filters={this.state.filters}
             onFiltersChange={this.handleFiltersChange}
           />
-          <GifsList
+          <PaginationControlled
             images={this.state.images}
             filters={this.state.filters}
             onFiltersChange={this.handleFiltersChange}
