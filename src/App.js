@@ -20,7 +20,8 @@ class App extends React.Component {
   handleFiltersChange = filters => {
     if (parseInt(filters.number) < 1) filters.number = '1';
     if (parseInt(filters.number) > 50) filters.number = '50';
-    if (filters.number === '') filters.number = '12';
+    if (filters.number === '' || filters.number.match('[.-]'))
+      filters.number = '12';
     this.setState({ filters });
     this.search(filters.type, filters.request, filters.number);
   };

@@ -14,6 +14,7 @@ class Search extends React.Component {
   };
 
   handleNumberChange = e => {
+    console.log(e.target.value);
     const { value } = e.target;
     this.setState({ number: value });
   };
@@ -42,7 +43,7 @@ class Search extends React.Component {
             error={
               parseInt(this.state.number) < 1 ||
               parseInt(this.state.number) > 50 ||
-              this.state.number.includes('-') ||
+              this.state.number.match('[.-]') ||
               this.state.number === ''
             }
             onChange={this.handleNumberChange}
