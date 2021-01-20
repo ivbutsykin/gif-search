@@ -1,7 +1,7 @@
-import Search from './Search/Search';
-import GifsList from './GifsList/GifsList';
 import React from 'react';
 import Container from '@material-ui/core/Container';
+import Search from './Search/Search';
+import GifsList from './GifsList/GifsList';
 
 class App extends React.Component {
   state = {
@@ -9,12 +9,14 @@ class App extends React.Component {
       type: 'trending',
       request: '',
       number: '12',
+      offset: '0',
+      more: false,
     },
     images: [],
   };
 
   componentDidMount() {
-    this.search('trending');
+    this.search({ type: 'trending' });
   }
 
   handleFiltersChange = filters => {
@@ -23,13 +25,19 @@ class App extends React.Component {
     if (filters.number === '' || filters.number.match('[.-]'))
       filters.number = '12';
     this.setState({ filters });
-    this.search(filters.type, filters.request, filters.number);
+    this.search(filters);
   };
 
-  search = async (type, request = '', number = '12') => {
+  search = async ({
+    type,
+    request = '',
+    number = '12',
+    offset = '0',
+    more = false,
+  }) => {
     const APIKEY = 'pjCHX4LrLMKOXW9FusMNZDv9QDB4lAXP';
     const response = await fetch(
-      `https://api.giphy.com/v1/gifs/${type}?api_key=${APIKEY}&limit=${number}&q=${request}`
+      `https://api.giphy.com/v1/gifs/${type}?api_key=${APIKEY}&limit=${number}&q=${request}&offset=${offset}`
     );
     const responseJson = await response.json();
     let data = await responseJson.data;
@@ -39,7 +47,8 @@ class App extends React.Component {
       title: el.title,
     }));
     this.setState({
-      images: data,
+      images: more ? this.state.images.concat(data) : data,
+      more: false,
     });
   };
 
@@ -51,7 +60,11 @@ class App extends React.Component {
             filters={this.state.filters}
             onFiltersChange={this.handleFiltersChange}
           />
-          <GifsList images={this.state.images} />
+          <GifsList
+            images={this.state.images}
+            filters={this.state.filters}
+            onFiltersChange={this.handleFiltersChange}
+          />
         </Container>
       </div>
     );

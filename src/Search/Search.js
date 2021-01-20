@@ -1,8 +1,8 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import SearchIcon from '@material-ui/icons/Search';
-import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+import SearchIcon from '@material-ui/icons/Search';
+import Button from '@material-ui/core/Button';
 
 class Search extends React.Component {
   state = this.props.filters;
@@ -10,13 +10,12 @@ class Search extends React.Component {
   handleRequestChange = e => {
     const { value } = e.target;
     const type = value ? 'search' : 'trending';
-    this.setState({ type, request: value });
+    this.setState({ type, request: value, offset: '0' });
   };
 
   handleNumberChange = e => {
-    console.log(e.target.value);
     const { value } = e.target;
-    this.setState({ number: value });
+    this.setState({ number: value, offset: '0' });
   };
 
   render() {
@@ -36,7 +35,6 @@ class Search extends React.Component {
             label="Number (1-50)"
             type="number"
             margin="normal"
-            value={this.state.number}
             InputLabelProps={{
               shrink: true,
             }}
@@ -46,6 +44,7 @@ class Search extends React.Component {
               this.state.number.match('[.-]') ||
               this.state.number === ''
             }
+            value={this.state.number}
             onChange={this.handleNumberChange}
           />
         </Grid>
