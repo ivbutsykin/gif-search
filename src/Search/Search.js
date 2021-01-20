@@ -21,7 +21,7 @@ class Search extends React.Component {
   render() {
     return (
       <Grid container alignItems="center" spacing={2}>
-        <Grid item xs={12} sm={7} md={8}>
+        <Grid item xs={12} sm={6} md={8}>
           <TextField
             label="Search GIF"
             fullWidth
@@ -30,7 +30,7 @@ class Search extends React.Component {
             onChange={this.handleRequestChange}
           />
         </Grid>
-        <Grid item xs={6} sm={2} md={2}>
+        <Grid item xs={6} sm={3} md={2}>
           <TextField
             label="Number (1-50)"
             type="number"

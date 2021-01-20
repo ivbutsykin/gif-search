@@ -7,11 +7,16 @@ class GifsList extends React.Component {
   state = this.props.filters;
 
   handleClick = e => {
-    this.setState({
-      more: true,
-      offset: this.props.images.length,
-    });
-    this.props.onFiltersChange(this.state);
+    this.setState(
+      {
+        type: this.props.filters.type,
+        request: this.props.filters.request,
+        number: '12',
+        offset: this.props.images.length,
+        more: true,
+      },
+      () => this.props.onFiltersChange(this.state)
+    );
   };
 
   render() {
