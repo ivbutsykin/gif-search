@@ -6,10 +6,15 @@ import GifItem from '../GifsList/GifItem/GifItem';
 class PaginationControlled extends React.Component {
   state = {
     filters: this.props.filters,
+    // images: this.props.images,
     page: '',
   };
 
-  setPage = (event, value) => {
+  componentDidMount() {
+    this.setPage(1);
+  }
+
+  setPage = value => {
     this.setState({
       page: this.props.images
         .slice((value - 1) * 12, value * 12 - 1)
@@ -19,6 +24,10 @@ class PaginationControlled extends React.Component {
           </Grid>
         )),
     });
+  };
+
+  handleChange = (event, value) => {
+    this.setPage(value);
   };
 
   render() {
@@ -35,7 +44,7 @@ class PaginationControlled extends React.Component {
               <Pagination
                 count={Math.ceil(this.props.images.length / 12)}
                 color="primary"
-                onChange={this.setPage}
+                onChange={this.handleChange}
               />
             </Grid>
           </Grid>
