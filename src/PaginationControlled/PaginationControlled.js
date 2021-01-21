@@ -15,12 +15,21 @@ class PaginationControlled extends React.Component {
   };
 
   handleClick = e => {
+    let number = '12';
+    if (this.props.images.length % 12 === 0) {
+      this.setState((state, props) => ({
+        page: state.page + 1,
+      }));
+    }
+    if (this.props.images.length % 12 !== 0) {
+      number = (12 + (12 - this.props.images.length)).toString();
+    }
     this.setState(
       {
         filters: {
           type: this.props.filters.type,
           request: this.props.filters.request,
-          number: '12',
+          number: number,
           offset: this.props.images.length,
           more: true,
         },
@@ -67,6 +76,7 @@ class PaginationControlled extends React.Component {
           <Grid container justify="center">
             <Grid item>
               <Pagination
+                page={this.state.page}
                 count={Math.ceil(this.props.images.length / 12)}
                 color="primary"
                 onChange={this.handleChange}

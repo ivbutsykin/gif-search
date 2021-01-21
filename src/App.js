@@ -46,8 +46,11 @@ class App extends React.Component {
       url: el.images.downsized.url,
       title: el.title,
     }));
+    if (more) {
+      data = [...this.state.images, ...data];
+    }
     this.setState({
-      images: more ? this.state.images.concat(data) : data,
+      images: data,
       more: false,
     });
   };
