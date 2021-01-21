@@ -33,7 +33,7 @@ class App extends React.Component {
     request = '',
     number = '12',
     offset = '0',
-    // more = false,
+    more = false,
   }) => {
     const APIKEY = 'pjCHX4LrLMKOXW9FusMNZDv9QDB4lAXP';
     const response = await fetch(
@@ -47,7 +47,7 @@ class App extends React.Component {
       title: el.title,
     }));
     this.setState({
-      images: data,
+      images: more ? this.state.images.concat(data) : data,
       more: false,
     });
   };

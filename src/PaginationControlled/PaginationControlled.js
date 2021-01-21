@@ -1,7 +1,8 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Pagination from '@material-ui/lab/Pagination';
-import GifItem from '../GifsList/GifItem/GifItem';
+import GifItem from './GifItem/GifItem';
+import Button from '@material-ui/core/Button';
 
 class PaginationControlled extends React.Component {
   state = {
@@ -13,8 +14,41 @@ class PaginationControlled extends React.Component {
     this.setState({ page: value });
   };
 
+  handleClick = e => {
+    this.setState(
+      {
+        filters: {
+          type: this.props.filters.type,
+          request: this.props.filters.request,
+          number: '12',
+          offset: this.props.images.length,
+          more: true,
+        },
+      },
+      () => this.props.onFiltersChange(this.state.filters)
+    );
+  };
+
   render() {
     const { images } = this.props;
+    let showMoreButton;
+    if (this.state.page === Math.ceil(this.props.images.length / 12)) {
+      showMoreButton = (
+        <Grid item xs={12}>
+          <Grid container justify="center">
+            <Grid item>
+              <Button
+                variant="outlined"
+                color="primary"
+                onClick={this.handleClick}
+              >
+                Show more
+              </Button>
+            </Grid>
+          </Grid>
+        </Grid>
+      );
+    }
     return (
       <Grid container spacing={3}>
         <Grid item xs={12}>
@@ -28,6 +62,7 @@ class PaginationControlled extends React.Component {
               ))}
           </Grid>
         </Grid>
+        {showMoreButton}
         <Grid item xs={12}>
           <Grid container justify="center">
             <Grid item>
