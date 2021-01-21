@@ -13,11 +13,16 @@ class App extends React.Component {
       more: false,
     },
     images: [],
+    page: 1,
   };
 
   componentDidMount() {
     this.search({ type: 'trending' });
   }
+
+  hadlePageChange = page => {
+    this.setState({ page });
+  };
 
   handleFiltersChange = filters => {
     if (parseInt(filters.number) < 1) filters.number = '1';
@@ -46,11 +51,14 @@ class App extends React.Component {
       url: el.images.downsized.url,
       title: el.title,
     }));
+    let page = 1;
     if (more) {
       data = [...this.state.images, ...data];
+      page = this.state.page;
     }
     this.setState({
       images: data,
+      page: page,
       more: false,
     });
   };
@@ -66,6 +74,8 @@ class App extends React.Component {
           <PaginationControlled
             images={this.state.images}
             filters={this.state.filters}
+            page={this.state.page}
+            onPageChange={this.hadlePageChange}
             onFiltersChange={this.handleFiltersChange}
           />
         </Container>
