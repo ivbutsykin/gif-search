@@ -6,36 +6,26 @@ import GifItem from '../GifsList/GifItem/GifItem';
 class PaginationControlled extends React.Component {
   state = {
     filters: this.props.filters,
-    // images: this.props.images,
-    page: '',
-  };
-
-  componentDidMount() {
-    this.setPage(1);
-  }
-
-  setPage = value => {
-    this.setState({
-      page: this.props.images
-        .slice((value - 1) * 12, value * 12 - 1)
-        .map(obj => (
-          <Grid item xs={6} sm={4} md={3} key={obj.id}>
-            <GifItem src={obj.url} alt={obj.title} />{' '}
-          </Grid>
-        )),
-    });
+    page: 1,
   };
 
   handleChange = (event, value) => {
-    this.setPage(value);
+    this.setState({ page: value });
   };
 
   render() {
+    const { images } = this.props;
     return (
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Grid container spacing={2}>
-            {this.state.page}
+            {images
+              .slice((this.state.page - 1) * 12, this.state.page * 12 - 1)
+              .map(obj => (
+                <Grid item xs={6} sm={4} md={3} key={obj.id}>
+                  <GifItem src={obj.url} alt={obj.title} />
+                </Grid>
+              ))}
           </Grid>
         </Grid>
         <Grid item xs={12}>
