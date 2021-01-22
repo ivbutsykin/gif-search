@@ -65,7 +65,7 @@ class PaginationControlled extends React.Component {
         <Grid item xs={12}>
           <Grid container spacing={2}>
             {images
-              .slice((this.props.page - 1) * 12, this.props.page * 12 - 1)
+              .slice((this.props.page - 1) * 12, this.props.page * 12)
               .map(obj => (
                 <Grid item xs={6} sm={4} md={3} key={obj.id}>
                   <GifItem src={obj.url} alt={obj.title} />
