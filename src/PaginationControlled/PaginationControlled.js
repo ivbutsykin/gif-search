@@ -21,7 +21,10 @@ class PaginationControlled extends React.Component {
       this.props.onPageChange(value);
     }
     if (this.props.images.length % 12 !== 0) {
-      number = (12 + (12 - this.props.images.length)).toString();
+      number = (
+        12 +
+        (12 - Math.ceil(this.props.images.length % 12))
+      ).toString();
     }
     this.setState(
       {
