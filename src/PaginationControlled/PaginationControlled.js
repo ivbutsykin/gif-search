@@ -17,7 +17,6 @@ class PaginationControlled extends React.Component {
     let number = '12';
     if (this.props.images.length % 12 === 0) {
       const value = this.props.page + 1;
-      console.log(value);
       this.props.onPageChange(value);
     }
     if (this.props.images.length % 12 !== 0) {
