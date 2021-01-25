@@ -1,1 +1,1 @@
-Find the GIF from giphy.com
+Find the GIFs from [giphy.com](https://giphy.com/)
